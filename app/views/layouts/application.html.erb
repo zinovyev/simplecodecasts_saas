@@ -9,7 +9,7 @@
 <body>
 
 <nav class="navbar navbar-inverse navbar-static-top">
-  <div class="container-fluid">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -26,6 +26,15 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <%= button_to 'Sign Out', destroy_user_session_path, class: 'btn btn-primary navbar-btn', method: :delete %>  
+        <% else %>
+          <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary navbar-btn', method: :get %>
+          <!--<%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary navbar-btn', method: :get %>-->
+        <% end %>
+      </div>
+
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to 'About', about_path %></li>
         <li><%= link_to 'Contact Us', new_contact_path %></li>
