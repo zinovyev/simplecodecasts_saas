@@ -1,9 +1,10 @@
 class ProfilesController < ApplicationController
+	before_action :authenticate_user!
+	before_action :only_current_user
+
 	def new
-		# form where each user can fill out their own profile
-		raise 'Access Denied' unless current_user.id == params[:user_id].to_i
-			@user = User.find(params[:user_id])
-			@profile = Profile.new #@user.build_profile
+		@user = User.find(params[:user_id])
+		@profile = Profile.new #@user.build_profile
 	end
 	
 	def create
@@ -36,5 +37,10 @@ class ProfilesController < ApplicationController
 	private
 		def profile_params
 			params.require(:profile).permit(:first_name, :last_name, :job_title, :phone_number, :contact_email, :description)
+		end
+		
+		def only_current_user
+			@user = User.find(params[:user_id])
+			redirect_to(root_url) unless @user == current_user
 		end
 end
