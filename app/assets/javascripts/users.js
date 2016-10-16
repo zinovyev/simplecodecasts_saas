@@ -21,7 +21,7 @@ var stripeResponseHandler = function (status, response) {
 	if (response.error) { // Problem!
 
     // Show the errors on the form:
-    $('#main-container').prepend($('<div class="alert alert-warning">').text(response.error.message));
+    $('#main-container').prepend($('<div class="alert alert-warning">').text('Problem with your card: ' + response.error.message));
     $form.find('.submit').prop('disabled', false); // Re-enable submission
 
   } else { // Token was created!

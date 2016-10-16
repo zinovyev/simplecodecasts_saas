@@ -1,4 +1,6 @@
 <% if @user.profile %>
+	<%= image_tag @user.profile.avatar %><br>
+
 	<%= @user.profile.first_name %> <%= @user.profile.last_name %><br>
 	<%= @user.profile.job_title %><br>
 	
