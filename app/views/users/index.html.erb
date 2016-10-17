@@ -1,1 +1,3 @@
-<%= @users.map { |u| "<div class='row'>#{u.email}</div>" } %>
+<% @users.each do |user| %>
+	<div class='row'><%= user.email %></div>
+<% end %>
