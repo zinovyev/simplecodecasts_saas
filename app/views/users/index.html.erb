@@ -1,3 +1,30 @@
-<% @users.each do |user| %>
-	<div class='row'><%= user.email %></div>
-<% end %>
+<div class='row'>
+	<div class="col-md-8 col-md-offset-2">
+		<ul class="list-unstyled">
+			<% @users.each do |user| %>
+				<% if user.profile %>
+					<li>
+						<div class="well <%= cycle('grey-bg', '') %> row">
+							<div class="col-sm-4 text-center">
+							<%= link_to user do %>
+								<% if user.profile.avatar %>
+									<%= image_tag user.profile.avatar.url(:thumb), class: 'user-show-avatar' %>
+								<% else %>
+									<%= image_tag '/system/profiles/avatars/000/000/003/thumb/technics-q-g-640-480-8.jpg?1477540312', class: 'user-show-avatar' %>
+								<% end %>
+							<% end %>
+							</div>
+							
+							<div>
+								<%= link_to user do %>
+									<h2><%= user.profile.first_name %> <%= user.profile.last_name %></h2>
+								<% end %>
+								<p><%= user.profile.job_title %></p>
+							</div>
+						</div>
+					</li>
+				<% end %>
+			<% end %>
+		</ul>
+	</div>
+</div>
